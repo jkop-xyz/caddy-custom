@@ -1,4 +1,9 @@
-FROM golang AS builder
+FROM golang:1.24.1-alpine AS builder
+RUN apk add --no-cache git bash curl
+RUN go install github.com/caddyserver/xcaddy/cmd/xcaddy@latest
+WORKDIR /src
+COPY . .
+
 
 RUN xcaddy build \
     --with github.com/caddy-dns/cloudflare \
@@ -11,4 +16,4 @@ RUN xcaddy build \
 
 FROM caddy:latest
 
-COPY --from=builder /usr/bin/caddy /usr/bin/caddy
+COPY --from=builder /src/caddy /usr/bin/caddy
