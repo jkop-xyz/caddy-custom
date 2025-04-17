@@ -1,4 +1,4 @@
-FROM caddy:builder-alpine AS builder
+FROM golang AS builder
 
 RUN xcaddy build \
     --with github.com/caddy-dns/cloudflare \
