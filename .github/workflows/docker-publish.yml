@@ -27,11 +27,11 @@ jobs:
         run: |
           SHORT_SHA=$(echo "${GITHUB_SHA}" | cut -c1-7)
           docker build \
-            -t ghcr.io/${{ github.repository_owner }}/my-image:latest \
-            -t ghcr.io/${{ github.repository_owner }}/my-image:$SHORT_SHA .
+            -t ghcr.io/${{ github.repository_owner }}/caddy-custom:latest \
+            -t ghcr.io/${{ github.repository_owner }}/caddy-custom:$SHORT_SHA .
 
       - name: Push Docker images
         run: |
           SHORT_SHA=$(echo "${GITHUB_SHA}" | cut -c1-7)
-          docker push ghcr.io/${{ github.repository_owner }}/my-image:latest
-          docker push ghcr.io/${{ github.repository_owner }}/my-image:$SHORT_SHA
+          docker push ghcr.io/${{ github.repository_owner }}/caddy-custom:latest
+          docker push ghcr.io/${{ github.repository_owner }}/caddy-custom:$SHORT_SHA
